@@ -8,6 +8,7 @@ from pyowm.utils import config
 from pyowm.utils import timestamps
 from pyowm.utils.config import get_default_config
 from pyowm.weatherapi25 import observation
+from pyowm.utils.config import get_default_config
 
 
 
@@ -37,7 +38,9 @@ def command():
 
     return zadanie
 def test(arg):
-    owm = OWM('b7ca9e58889c65158dfe9994fce5f839')
+    config_dict = get_default_config()
+    config_dict['language'] = 'ru'
+    owm = OWM('b7ca9e58889c65158dfe9994fce5f839', config_dict)
     mgr = owm.weather_manager()
 
     observation = mgr.weather_at_place(str(arg))
